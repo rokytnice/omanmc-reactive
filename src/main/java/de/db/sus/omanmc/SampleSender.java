@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package reactor.rabbitmq.samples;
+package de.db.sus.omanmc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

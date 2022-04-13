@@ -1,4 +1,4 @@
-package hello;
+package de.db.sus.omanmc.webflux;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

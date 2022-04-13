@@ -1,4 +1,4 @@
-package hello;
+package de.db.sus.omanmc.webflux;
 
 
 public class Response {

@@ -1,4 +1,4 @@
-package hello;
+package de.db.sus.omanmc.webflux;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
