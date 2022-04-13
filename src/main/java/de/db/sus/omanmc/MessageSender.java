@@ -31,14 +31,14 @@ import java.util.concurrent.TimeUnit;
 /**
  *
  */
-public class SampleSender {
+public class MessageSender {
 
     private static final String QUEUE = "demo-queue";
-    private static final Logger LOGGER = LoggerFactory.getLogger(SampleSender.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MessageSender.class);
 
     private final Sender sender;
 
-    public SampleSender() {
+    public MessageSender() {
         this.sender = RabbitFlux.createSender();
     }
 
@@ -64,7 +64,7 @@ public class SampleSender {
     public static void main(String[] args) throws Exception {
         int count = 20;
         CountDownLatch latch = new CountDownLatch(count);
-        SampleSender sender = new SampleSender();
+        MessageSender sender = new MessageSender();
         sender.send(QUEUE, count, latch);
         latch.await(10, TimeUnit.SECONDS);
         sender.close();
