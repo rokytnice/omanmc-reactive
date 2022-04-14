@@ -17,12 +17,12 @@ public class Client {
 		this.client = builder.baseUrl("http://localhost:8080").build();
 	}
 
-	public Mono<String> getMessage() {
+	public Mono<String> getDevices() {
 		return this.
 				client
 				.get()
-				.uri("/hello").accept(MediaType.APPLICATION_JSON)
-//				.uri("http://localhost:8080/").accept(MediaType.APPLICATION_JSON)
+//				.uri("/hello").accept(MediaType.APPLICATION_JSON)
+				.uri("http://localhost:8085/logicalDevices").accept(MediaType.APPLICATION_JSON)
 				.retrieve()
 				.bodyToMono(Response.class)
 				.map(Response::getMessage);

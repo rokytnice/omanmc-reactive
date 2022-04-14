@@ -11,6 +11,6 @@ public class Application {
 		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
 		Client greetingClient = context.getBean(Client.class);
 		// We need to block for the content here or the JVM might exit before the message is logged
-		System.out.println(">> message = " + greetingClient.getMessage().block());
+		System.out.println(">> message = " + greetingClient.getDevices().block());
 	}
 }

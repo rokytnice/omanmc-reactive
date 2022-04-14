@@ -17,7 +17,8 @@ import javax.annotation.PreDestroy;
 @SpringBootApplication
 public class Application {
 
-    static final String QUEUE = "reactor.rabbitmq.spring.boot";
+    static final String OMAN_IN_QUEUE = "irisplus.oman.ctrl.in.queue.it";
+    static final String OMAN_OUT_EXCHANGE = "irisplus.oman.ctrl.out.exchange.it";
 
 
     @Autowired
@@ -56,7 +57,7 @@ public class Application {
 
     @Bean
     Flux<Delivery> deliveryFlux(Receiver receiver) {
-        return receiver.consumeNoAck(QUEUE);
+        return receiver.consumeNoAck(OMAN_IN_QUEUE);
     }
 
 

@@ -15,18 +15,18 @@ import javax.annotation.PostConstruct;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static de.db.sus.omanmc.Application.QUEUE;
+import static de.db.sus.omanmc.Application.OMAN_OUT_EXCHANGE;
 
 @Component
 public class Runner  {
 
     final Sender sender;
-    final Flux<Delivery> deliveryFlux;
+    final Flux<Delivery> dabFlux;
     private static final Logger LOGGER = LoggerFactory.getLogger(Runner.class);
 
-    Runner(Sender sender, Flux<Delivery> deliveryFlux) {
+    Runner(Sender sender, Flux<Delivery> dabFlux) {
         this.sender = sender;
-        this.deliveryFlux = deliveryFlux;
+        this.dabFlux = dabFlux;
     }
 
     @Autowired
@@ -34,24 +34,45 @@ public class Runner  {
 
 
     @PostConstruct
-    public void run()  {
+    public void run() {
         AtomicInteger messageCount = new AtomicInteger(1);
-        deliveryFlux.subscribe(m -> {
-            LOGGER.info("Received message {}", new String(m.getBody()));
-            Mono<String> message = client.getMessage();
-            LOGGER.info("Received response {}", new String(message.toString() ));
-            messageCount.getAndIncrement();
-            sender.send(
+        dabFlux.doOnNext(m -> {
+                    LOGGER.info("Received message {}", new String(m.getBody()));
+                    Mono<String> message = client.getDevices();
 
+        })
+                .doOnNext(m -> {
+                    LOGGER.info("Received response {}", new String(m.toString()));
+                    messageCount.getAndIncrement();
+                })
+                .doOnNext(m -> {
+                    sender.send(
                             Flux.range(messageCount.get(), messageCount.get())
-                                    .map(i -> new OutboundMessage("",      QUEUE,                    ("Message_" + i).getBytes()))
-                    )
-                    .subscribe();
-
-        });
-
-        LOGGER.info("Sending messages...");
-
+                                    .map(i -> new OutboundMessage("", OMAN_OUT_EXCHANGE,    ("Message_" + i).getBytes()))
+                    );
+                    LOGGER.info("Send message to tdc-ses", new String(m.toString()));
+                })
+                .subscribe();
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
