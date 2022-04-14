@@ -73,6 +73,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/IccContext.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/MessageSender.java">
           <value>
             <set />
@@ -89,6 +94,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/SampleSender.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/Sequence.java">
           <value>
             <set />
           </value>

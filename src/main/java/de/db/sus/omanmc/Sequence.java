@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.rabbitmq.OutboundMessage;
@@ -18,13 +19,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static de.db.sus.omanmc.Application.OMAN_OUT_EXCHANGE;
 
 @Component
-public class Runner  {
+public class Sequence {
 
     final Sender sender;
-    final Flux<Delivery> dabFlux;
-    private static final Logger LOGGER = LoggerFactory.getLogger(Runner.class);
+    final Flux<Delivery> dabFlux;//https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html
+    private static final Logger LOGGER = LoggerFactory.getLogger(Sequence.class);
 
-    Runner(Sender sender, Flux<Delivery> dabFlux) {
+    Sequence(Sender sender, Flux<Delivery> dabFlux) {
         this.sender = sender;
         this.dabFlux = dabFlux;
     }
@@ -35,24 +36,25 @@ public class Runner  {
 
     @PostConstruct
     public void run() {
-        AtomicInteger messageCount = new AtomicInteger(1);
-        dabFlux.doOnNext(m -> {
-                    LOGGER.info("Received message {}", new String(m.getBody()));
-                    Mono<String> message = client.getDevices();
-
-        })
+        //                    LOGGER.info("Received message {}", new String(m.getBody()));
+        dabFlux.map(iccContext ->  iccContext.getBody() )
                 .doOnNext(m -> {
-                    LOGGER.info("Received response {}", new String(m.toString()));
-                    messageCount.getAndIncrement();
+                    LOGGER.info("Received response {}", new String(m));
+                    Mono<String> message = client.getDevices(String.valueOf(m));
+                    LOGGER.info("Received response {}", new String(message.toString()));
                 })
                 .doOnNext(m -> {
                     sender.send(
-                            Flux.range(messageCount.get(), messageCount.get())
-                                    .map(i -> new OutboundMessage("", OMAN_OUT_EXCHANGE,    ("Message_" + i).getBytes()))
+                            Flux.range(1, 1)
+                                    .map(i -> new OutboundMessage("", OMAN_OUT_EXCHANGE, ("Message_" + i).getBytes()))
                     );
                     LOGGER.info("Send message to tdc-ses", new String(m.toString()));
                 })
                 .subscribe();
+    }
+
+    private boolean filterAboId(Delivery iccContext) {
+        return false;
     }
 
 }

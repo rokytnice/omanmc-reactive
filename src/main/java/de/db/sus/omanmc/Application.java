@@ -25,7 +25,7 @@ public class Application {
     private Mono<Connection> connectionMono;
 
     @Autowired
-    private Runner runner;
+    private Sequence runner;
 
 
     public static void main(String[] args) {
