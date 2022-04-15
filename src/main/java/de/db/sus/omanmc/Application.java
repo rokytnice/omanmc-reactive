@@ -14,11 +14,12 @@ import reactor.rabbitmq.*;
 
 import javax.annotation.PreDestroy;
 
+import static de.db.sus.omanmc.Flow.OMAN_IN_QUEUE;
+
 @SpringBootApplication
 public class Application {
 
-    static final String OMAN_IN_QUEUE = "irisplus.oman.ctrl.in.queue.it";
-    static final String OMAN_OUT_EXCHANGE = "irisplus.oman.ctrl.out.exchange.it";
+
 
 
     @Autowired
