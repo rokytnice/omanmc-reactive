@@ -27,10 +27,9 @@ public class Client {
 //				.uri("/hello").accept(MediaType.APPLICATION_JSON)
 				.uri("http://localhost:8085/logicalDevices?aboid="+aboId)
 				.accept(MediaType.APPLICATION_JSON)
-//				.retrieve()
-//				.bodyToMono(Response.class)
-//				.map(Response::getMessage)
-
+				.retrieve()
+				.bodyToMono(Response.class)
+				.map(Response::getMessage)
 				;
 	}
 
