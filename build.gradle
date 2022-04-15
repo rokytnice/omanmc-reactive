@@ -32,6 +32,9 @@ repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/snapshot' }
 	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://artifactory.isxris.stationservice.aws.db.de/artifactory/plugins-release' }
+	maven { url 'https://artifactory.isxris.stationservice.aws.db.de/artifactory/libs-release' }
+	maven { url 'https://artifactory.isxris.stationservice.aws.db.de/artifactory/libs-snapshot' }
 }
 
 dependencies {
@@ -46,6 +49,12 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test:3.4.16'
 //	implementation 'io.projectreactor.rabbitmq:reactor-rabbitmq:1.5.4'
+
+	implementation "de.db.sus.libs:inttest-utils-lib:0.8.0"
+
+
+
+
 }
 
 test {

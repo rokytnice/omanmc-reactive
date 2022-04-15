@@ -26,5 +26,20 @@
       <option name="name" value="maven2" />
       <option name="url" value="https://repo.spring.io/milestone" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven5" />
+      <option name="name" value="maven5" />
+      <option name="url" value="https://artifactory.isxris.stationservice.aws.db.de/artifactory/libs-snapshot" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven4" />
+      <option name="name" value="maven4" />
+      <option name="url" value="https://artifactory.isxris.stationservice.aws.db.de/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven3" />
+      <option name="name" value="maven3" />
+      <option name="url" value="https://artifactory.isxris.stationservice.aws.db.de/artifactory/plugins-release" />
+    </remote-repository>
   </component>
 </project>

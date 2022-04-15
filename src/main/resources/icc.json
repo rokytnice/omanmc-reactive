@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "version": "1.12.23",
+    "prio": 1,
+    "abonnementtyp": "ZUGANZEIGER",
+    "abonnementid": "b374d801-57cb-40a6-a2ef-30ee8959b998",
+    "scheduledTime": "2022-04-15T07:57:38.885Z",
+    "validUntil": "2022-04-15T10:44:18.885Z",
+    "renderingParameters": {
+      "renderAsZugtafel": true,
+      "showsMTFLayout": true
+    },
+    "icc": {
+      "id": "38a7adac-04ef-4025-8284-3366068037fd",
+      "created": "2022-04-15T07:57:38.885Z",
+      "version": "v3",
+      "renderingAction": "OUTPUT"
+    },
+    "ic": {
+      "id": "849c3b3a-9563-423f-9999-142e77ceba6b",
+      "created": "2022-04-15T07:57:38.885Z"
+    }
+  },
+  "body": "QXNoIG5hemcgZHVyYmF0dWzDu2ssDQphc2ggbmF6ZyBnaW1iYXR1bCwNCmFzaCBuYXpnIHRocmFrYXR1bMO7aw0KYWdoIGJ1cnp1bS1pc2hpIGtyaW1wYXR1bA=="
+}

@@ -27,15 +27,15 @@ import reactor.rabbitmq.Sender;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-public class SampleReceiver {
+public class MessageReceiver {
 
     private static final String QUEUE = "demo-queue";
-    private static final Logger LOGGER = LoggerFactory.getLogger(SampleReceiver.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MessageReceiver.class);
 
     private final Receiver receiver;
     private final Sender sender;
 
-    public SampleReceiver() {
+    public MessageReceiver() {
         this.receiver = RabbitFlux.createReceiver();
         this.sender = RabbitFlux.createSender();
     }
@@ -57,7 +57,7 @@ public class SampleReceiver {
     public static void main(String[] args) throws Exception {
         int count = 20;
         CountDownLatch latch = new CountDownLatch(count);
-        SampleReceiver receiver = new SampleReceiver();
+        MessageReceiver receiver = new MessageReceiver();
         Disposable disposable = receiver.consume(QUEUE, latch);
         latch.await(10, TimeUnit.SECONDS);
         disposable.dispose();

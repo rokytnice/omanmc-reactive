@@ -3,14 +3,14 @@ package de.db.sus.omanmc;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Envelope;
 
-public class IccContext {
+public class MessageIccContext {
 
 
         private final Envelope _envelope;
         private final AMQP.BasicProperties _properties;
         private final byte[] _body;
 
-        public IccContext(Envelope envelope, AMQP.BasicProperties properties, byte[] body) {
+        public MessageIccContext(Envelope envelope, AMQP.BasicProperties properties, byte[] body) {
             _envelope = envelope;
             _properties = properties;
             _body = body;

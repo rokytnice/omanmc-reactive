@@ -13,6 +13,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../cia/oman-controller-inttest/src/test/java/de/db/sus/oman/controller/model/InfoCtxModelFactory.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../cia/oman-controller/.gitlab-ci.yml">
           <value>
             <set />
@@ -78,6 +83,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/InfoCtxMeta.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/MessageIccContext.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/MessageReceiver.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/MessageSender.java">
           <value>
             <set />
@@ -104,6 +124,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/SpringBootSample.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/context/InfoCtxMeta.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/context/InfoCtxMetaIcc.java">
           <value>
             <set />
           </value>
@@ -284,6 +314,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/resources/application.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/resources/icc.json">
           <value>
             <set />
           </value>
