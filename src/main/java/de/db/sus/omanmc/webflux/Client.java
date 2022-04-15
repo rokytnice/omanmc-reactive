@@ -25,10 +25,13 @@ public class Client {
 				client
 				.get()
 //				.uri("/hello").accept(MediaType.APPLICATION_JSON)
-				.uri("http://localhost:8085/logicalDevices").accept(MediaType.APPLICATION_JSON)
-				.retrieve()
-				.bodyToMono(Response.class)
-				.map(Response::getMessage);
+				.uri("http://localhost:8085/logicalDevices?aboid="+aboId)
+				.accept(MediaType.APPLICATION_JSON)
+//				.retrieve()
+//				.bodyToMono(Response.class)
+//				.map(Response::getMessage)
+
+				;
 	}
 
 }

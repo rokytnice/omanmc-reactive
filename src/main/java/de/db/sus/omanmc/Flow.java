@@ -51,7 +51,7 @@ public class Flow {
                 "  \"version\": \"1.12.23\",\n" +
                 "  \"prio\": 1,\n" +
                 "  \"abonnementtyp\": \"ZUGANZEIGER\",\n" +
-                "  \"abonnementid\": \"b374d801-57cb-40a6-a2ef-30ee8959b998\",\n" +
+                "  \"abonnementid\": \"ABFAHRTSTAFEL-v4-2022-04-13T080417-460-13ed8b\",\n" +
                 "  \"scheduledTime\": \"2022-04-15T07:57:38.885Z\",\n" +
                 "  \"validUntil\": \"2022-04-15T10:44:18.885Z\",\n" +
                 "  \"renderingParameters\": {\n" +
@@ -75,7 +75,12 @@ public class Flow {
                     LOGGER.info("Received message {}", icc);
                     return abonnementid;
                 })
-                .map()
+                .flatMap(aboid -> {
+                            Mono<String> message = client.getDevices(aboid);
+                            LOGGER.info("Received message {}", message);
+                            return message;
+                        }
+                        )
                 .subscribe();
 
 
@@ -125,7 +130,7 @@ public class Flow {
 }
 
 
-//rabbitmqadmin publish exchange=irisplus.oman.ctrl.in.exchange.it routing_key=test payload="{'version':'1.12.23','prio':1,'abonnementtyp':'ZUGANZEIGER','abonnementid':'b374d801-57cb-40a6-2ef-30ee8959b998','scheduledTime':'2022-04-15T07:57:38.885Z','validUntil':'2022-04-15T10:44:18.885Z','renderingParameters':{'renderAsZugtafel':true,'showsMTFLayout':true}}"
+//rabbitmqadmin publish exchange=irisplus.oman.ctrl.in.exchange.it routing_key=test payload="{'version':'1.12.23','prio':1,'abonnementtyp':'ZUGANZEIGER','abonnementid':'ABFAHRTSTAFEL-v4-2022-04-13T080417-460-13ed8b','scheduledTime':'2022-04-15T07:57:38.885Z','validUntil':'2022-04-15T10:44:18.885Z','renderingParameters':{'renderAsZugtafel':true,'showsMTFLayout':true}}"
 
 
 //
