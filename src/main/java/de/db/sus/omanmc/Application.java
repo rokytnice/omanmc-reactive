@@ -19,9 +19,6 @@ import static de.db.sus.omanmc.Flow.OMAN_IN_QUEUE;
 @SpringBootApplication
 public class Application {
 
-
-
-
     @Autowired
     private Mono<Connection> connectionMono;
 
@@ -31,11 +28,8 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-
     }
 
-    // the mono for connection, it is cached to re-use the connection across sender and receiver instances
-    // this should work properly in most cases
     @Bean()
     Mono<Connection> connectionMono() {
         ConnectionFactory connectionFactory = new ConnectionFactory();

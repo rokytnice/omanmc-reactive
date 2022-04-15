@@ -29,6 +29,7 @@ public class Flow {
     static final String OMAN_IN_QUEUE = "irisplus.oman.ctrl.in.queue.it";
     static final String OMAN_OUT_EXCHANGE = "irisplus.oman.ctrl.out.exchange.it";
 
+    @Autowired
     final Sender sender;
     final Flux<Delivery> dabFlux;//https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html
     private static final Logger LOGGER = LoggerFactory.getLogger(Flow.class);
@@ -52,6 +53,7 @@ public class Flow {
 
 
 
+
         dabFlux
                 .map(messageIcc -> {
                     String iccMessage = new String(messageIcc.getBody()).replace("'","\"");
@@ -65,17 +67,18 @@ public class Flow {
                     }
                     return "aboid not found";
                 })
-                .map(aboid -> {
+                .doOnNext(aboid -> {
                             LOGGER.info("Received  aboid {}", aboid);
-                         return   createSESCommand(webClient);
+
+                            createSESCommand(webClient)
+                                    .doOnNext(map -> {
+                                        sender.send(Flux.range(1, 1).map(i -> new OutboundMessage(OMAN_OUT_EXCHANGE, "#", (map.toString()).getBytes())))
+                                                .subscribe();
+                                        LOGGER.info("Send message to tdc-ses", new String(map.toString()));
+                                    }).subscribe();
                         }
-                )
-                .map(m -> {
-                    sender.send(Flux.range(1, 1).map(i -> new OutboundMessage(OMAN_OUT_EXCHANGE, "#", ("Message_" + i).getBytes())))
-                            .subscribe();
-                    LOGGER.info("Send message to tdc-ses", new String(m.toString()));
-                    return "";
-                })
+                ).subscribe();
+
 //                .map(command ->  {
 //
 //                    Flux<OutboundMessageResult> confirmations = sender
@@ -86,7 +89,6 @@ public class Flow {
 //                            );
 //                    return "";
 //                })
-                .subscribe();
 
 
 //        receiver.consumeAutoAck(OMAN_IN_QUEUE)
