@@ -1,4 +1,4 @@
-package de.db.sus.omanmc.webflux;
+package de.db.sus.omanmc.archiv;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

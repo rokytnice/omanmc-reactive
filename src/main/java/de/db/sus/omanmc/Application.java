@@ -4,6 +4,7 @@ package de.db.sus.omanmc;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Delivery;
+import de.db.sus.omanmc.flux.Flow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +15,7 @@ import reactor.rabbitmq.*;
 
 import javax.annotation.PreDestroy;
 
-import static de.db.sus.omanmc.Flow.OMAN_IN_QUEUE;
+import static de.db.sus.omanmc.flux.Flow.OMAN_IN_QUEUE;
 
 @SpringBootApplication
 public class Application {

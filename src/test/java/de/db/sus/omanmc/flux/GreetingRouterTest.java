@@ -1,5 +1,6 @@
-package de.db.sus.omanmc.webflux;
+package de.db.sus.omanmc.flux;
 
+import de.db.sus.omanmc.archiv.Response;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

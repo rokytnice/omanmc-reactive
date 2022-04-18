@@ -1,4 +1,4 @@
-package de.db.sus.omanmc.webflux;
+package de.db.sus.omanmc.archiv;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

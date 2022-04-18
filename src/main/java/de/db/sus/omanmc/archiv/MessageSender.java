@@ -14,54 +14,60 @@
  * limitations under the License.
  */
 
-package de.db.sus.omanmc;
+package de.db.sus.omanmc.archiv;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import reactor.core.Disposable;
+import reactor.core.publisher.Flux;
+import reactor.rabbitmq.OutboundMessage;
+import reactor.rabbitmq.OutboundMessageResult;
 import reactor.rabbitmq.QueueSpecification;
 import reactor.rabbitmq.RabbitFlux;
-import reactor.rabbitmq.Receiver;
 import reactor.rabbitmq.Sender;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-public class MessageReceiver {
+/**
+ *
+ */
+public class MessageSender {
 
     private static final String QUEUE = "demo-queue";
-    private static final Logger LOGGER = LoggerFactory.getLogger(MessageReceiver.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MessageSender.class);
 
-    private final Receiver receiver;
     private final Sender sender;
 
-    public MessageReceiver() {
-        this.receiver = RabbitFlux.createReceiver();
+    public MessageSender() {
         this.sender = RabbitFlux.createSender();
     }
 
-    public Disposable consume(String queue, CountDownLatch latch) {
-        return receiver.consumeAutoAck(queue)
-                       .delaySubscription(sender.declareQueue(QueueSpecification.queue(queue)))
-                       .subscribe(m -> {
-                           LOGGER.info("Received message {}", new String(m.getBody()));
-                           latch.countDown();
-                       });
+    public void send(String queue, int count, CountDownLatch latch) {
+        Flux<OutboundMessageResult> confirmations = sender.sendWithPublishConfirms(Flux.range(1, count)
+            .map(i -> new OutboundMessage("", queue, ("Message_" + i).getBytes())));
+
+        sender.declareQueue(QueueSpecification.queue(queue))
+            .thenMany(confirmations)
+                .doOnError(e -> LOGGER.error("Send failed", e))
+                .subscribe(r -> {
+                    if (r.isAck()) {
+                        LOGGER.info("Message {} sent successfully", new String(r.getOutboundMessage().getBody()));
+                        latch.countDown();
+                    }
+                });
     }
 
     public void close() {
         this.sender.close();
-        this.receiver.close();
     }
 
     public static void main(String[] args) throws Exception {
         int count = 20;
         CountDownLatch latch = new CountDownLatch(count);
-        MessageReceiver receiver = new MessageReceiver();
-        Disposable disposable = receiver.consume(QUEUE, latch);
+        MessageSender sender = new MessageSender();
+        sender.send(QUEUE, count, latch);
         latch.await(10, TimeUnit.SECONDS);
-        disposable.dispose();
-        receiver.close();
+        sender.close();
     }
 
 }

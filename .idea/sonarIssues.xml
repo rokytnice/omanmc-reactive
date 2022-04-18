@@ -13,6 +13,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../cia/oman-controller-inttest/Makefile">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../cia/oman-controller-inttest/src/test/java/de/db/sus/oman/controller/model/InfoCtxModelFactory.java">
           <value>
             <set />
@@ -128,12 +133,52 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/archiv/Client.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/archiv/MessageReceiver.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/archiv/MessageSender.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/archiv/Response.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/archiv/RestMock.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/archiv/RestRouter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/context/InfoCtxMeta.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/context/InfoCtxMetaIcc.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/flux/Flow.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/de/db/sus/omanmc/flux/dto/AboIdBodyTupel.java">
           <value>
             <set />
           </value>

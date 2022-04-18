@@ -1,4 +1,4 @@
-package de.db.sus.omanmc.webflux;
+package de.db.sus.omanmc.archiv;
 
 
 public class Response {

@@ -45,16 +45,13 @@ dependencies {
 	implementation "io.projectreactor.rabbitmq:reactor-rabbitmq:1.5.5-SNAPSHOT"
 
 	implementation "org.springframework.boot:spring-boot-autoconfigure:2.5.9"
+	implementation 'org.projectlombok:lombok:1.18.22'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test:3.4.16'
 //	implementation 'io.projectreactor.rabbitmq:reactor-rabbitmq:1.5.4'
 
 	implementation "de.db.sus.libs:inttest-utils-lib:0.8.0"
-
-
-
-
 }
 
 test {
