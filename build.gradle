@@ -39,9 +39,6 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-//	implementation 'com.rabbitmq:rabbitmq-client-tests:1.2.0'
-//	implementation 'com.rabbitmq:rabbitmq-client:1.3.0'
-//	implementation 'org.springframework.amqp:spring-amqp:2.3.14'
 	implementation "io.projectreactor.rabbitmq:reactor-rabbitmq:1.5.5-SNAPSHOT"
 
 	implementation "org.springframework.boot:spring-boot-autoconfigure:2.5.9"
@@ -49,7 +46,6 @@ dependencies {
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test:3.4.16'
-//	implementation 'io.projectreactor.rabbitmq:reactor-rabbitmq:1.5.4'
 
 	implementation "de.db.sus.libs:inttest-utils-lib:0.8.0"
 }
