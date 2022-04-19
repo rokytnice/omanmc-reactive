@@ -4,9 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Delivery;
 import de.db.sus.inttest.util.model.ic.InfoCtxEncoded;
-import de.db.sus.inttest.util.model.ic.InfoCtxMeta;
-import de.db.sus.omanmc.archiv.Client;
-import de.db.sus.omanmc.archiv.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +41,6 @@ public class Flow {
         this.dabFlux = dabFlux;
     }
 
-    @Autowired
-    private Client client;
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -100,41 +95,6 @@ public class Flow {
 
 
 
-//        dabFlux
-//                .map(messageIcc -> {
-//                    String iccMessage = new String(messageIcc.getBody());
-//                    LOGGER.info("1. Step:  Received icc message {}", iccMessage);
-//                    try {
-//                        InfoCtxEncoded infoCtxEncoded = objectMapper.readValue(iccMessage, InfoCtxEncoded.class);
-//
-//                        return infoCtxEncoded;
-//                    } catch (JsonProcessingException e) {
-//                        LOGGER.error("Error during parsing icc message ",e);
-//                    }
-//                    return "aboid not found";
-//                })
-//                .doOnNext(infoCtxEncoded -> {
-//                            LOGGER.info("Mapped  aboid {}", infoCtxEncoded);
-//                            String abonnementid = ((InfoCtxEncoded) infoCtxEncoded).getMetaData().getAbonnementid();
-//                            requestLogicalDevice(webClient, abonnementid)
-//                                    .onErrorResume(err -> {
-//                                        LOGGER.info("Error call ldm");
-//                                        return Mono.empty();
-//                                    })
-//                                    .doOnNext(ldeviceAndICC -> requestRenderingEngine(webClient, "")//TODO do somithin with map
-//                                            .doOnNext(map -> {
-//                                                                sender.send(Flux.range(1, 1)
-//                                                                                .map(i -> new OutboundMessage(OMAN_OUT_EXCHANGE, "#", (map.toString()).getBytes())))
-//                                                                                .onErrorResume(err -> {
-//                                                                                    LOGGER.info("Error send to ses");
-//                                                                                    return Mono.empty();
-//                                                                                })
-//                                                                                .subscribe();
-//                                        LOGGER.info("3. Step: Send message to tdc-ses", new String(map.toString()));
-//                                    })
-//                                    ).subscribe();
-//                        }
-//                ).subscribe();
 
     }
 
